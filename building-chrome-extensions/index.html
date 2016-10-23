@@ -1,0 +1,614 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Building Chrome Extensions</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/white.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section data-background="#4169F1">
+					<h1>Building Chrome Extensions</h1>
+                    <h4>22 October, 2015</h4>
+                    <h4>Trinity College, Netsoc</h4>
+					<p class="findme">
+						<small>
+                            Created by <a href="http://patrickoboyle.com" target="_blank">Patrick O'Boyle</a> / <a href="https://twitter.com/Patrick_OBoyle" target="_blank">@Patrick_OBoyle</a>
+                        </small>
+					</p>
+				</section>
+
+				<section data-background="#fff" id="index">
+					<h2 style="color: #4169E1">Index:</h2>
+                    <ol>
+                        <li>
+                            <a href="#/whatare">What Are Chrome Extensions?</a>
+                        </li>
+                        <li>
+                            <a href="#/youlearn">What You'll Learn</a>
+                        </li>
+                        <li>
+                            <a href="#/structure">Extension Structure</a>
+                        </li>
+                        <li>
+                            <a href="#/build">Building the Extension</a>
+                        </li>
+                        <li>
+                            <a href="#/storage">Storing &amp; Retrieving Data</a>
+                        </li>
+                        <li>
+                            <a href="#/testing">Testing Your Extension</a>
+                        </li>
+                        <li>
+                            <a href="#/resources">Resources</a>
+                        </li>
+                        <li>
+                            <a href="#/source">Source Code</a>
+                        </li>
+                    </ol>
+				</section>
+
+				<!-- What Are Chrome Extensions -->
+				<section data-background="#fff">
+                    <section id="whatare">
+                        <h2 style="color: #4169E1">What Are Chrome Extensions?</h2>
+
+                        <blockquote cite="https://developer.chrome.com/extensions">
+					   	   &ldquo;
+                            Extensions are small software programs that can modify and enhance the functionality of the Chrome browser. You write them using web technologies such as HTML, JavaScript, and CSS.
+                            &rdquo;
+					   </blockquote>    
+                    </section>
+                    
+                    <section>
+						<h2 style="color: #4169E1">Extension Examples</h2>
+                        <h5>Pocket:</h5>
+                        <a href="https://chrome.google.com/webstore/detail/save-to-pocket/niloccemoadcdkdjlinkgdfekeahmflj">
+                            <img src="images/pocket.jpeg" width="100px">
+                        </a>
+                        <h5>Pushbullet:</h5>
+                        <a href="https://chrome.google.com/webstore/detail/pushbullet/chlffgpmiacpedhhbkiomidkjlcfhogd">
+                            <img src="images/push.png" width="100px">
+                        </a>
+                    
+                        <h5>Turn Off The Lights</h5>
+                        <a href="https://chrome.google.com/webstore/detail/turn-off-the-lights/bfbmjmiodbnnpllbbbfblcplfjjepjdn">
+                            <img src="images/turnoff.png" width="100px">
+                        </a>
+					</section>
+				</section>
+                
+                <!-- What You'll Learn -->
+				<section data-background="#fff" id="youlearn">
+					<h2 style="color: #4169E1">What You'll Learn</h2>
+                    <p>How to:</p>
+					<ul>
+                        <li class="fragment">Setup your extension's files</li>
+                        <li class="fragment">Check for events in the background</li>
+                        <li class="fragment">Access the content of a webpage</li>
+                        <li class="fragment">Create options for your extension</li>
+                        <li class="fragment">Use the Chrome APIs (Storage)</li>
+                        <li class="fragment">Create an extension to change a page's background colour</li>
+                        <li class="fragment">Learn past the material in this talk</li>
+                    </ul>
+                    
+				</section>
+
+				<section data-background="#fff" >
+                    <section id="structure">
+                        <h2 style="color: #4169E1">Extension Structure</h2>
+                        <p>Extensions have 3 main types of files:</p>
+                        <ul>
+                            <li>Manifest</li>
+                            <li>Content Scripts</li>
+                            <li>Background Pages</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2 style="color: #4169E1">Manifest File</h2>
+                        <blockquote cite="https://developer.chrome.com/extensions">
+					   	   &ldquo;
+                            Every extension has a JSON-formatted manifest file, named manifest.json, that provides important information.
+                            &rdquo;
+					   </blockquote> 
+                    </section>
+                    <section>
+                        <h2 style="color: #4169E1">Example Manifest</h2>
+                        <img src="images/manifest.png">
+                       </pre>
+                    </section>
+                    <section>
+                        <h2 style="color: #4169E1">Content Scripts</h2>
+                        <blockquote cite="https://developer.chrome.com/extensions">
+					   	   &ldquo;
+                            Content scripts are JavaScript files that run in the context of web pages. By using the standard Document Object Model (DOM), they can read details of the web pages the browser visits, or make changes to them.
+                            &rdquo;
+					   </blockquote> 
+                    </section>
+                    <section>
+                        <h2 style="color: #4169E1">Background Pages</h2>
+                        <blockquote cite="https://developer.chrome.com/extensions">
+					   	   &ldquo;
+                             The background page is an HTML page that runs in the extension process. It exists for the lifetime of your extension, and only one instance of it at a time is active.
+                            &rdquo;
+					   </blockquote> 
+                    </section>
+				</section>
+
+				<section data-background="#fff">
+                    <section id="manifest">
+                        <h2 style="color: #4169E1">Project Manifest</h2>
+                        <ul>
+                            <li>Declares everything your extension does</li>
+                            <li>
+                                <p>Examples:</p>
+                                <ul>
+                                    <li>Scripts</li>
+                                    <li>Icons</li>
+                                    <li>Permissions</li>
+                                </ul>
+                                <br>
+                            </li>
+                            <li>It's a JSON file</li>
+                            <li>Few entries required, lots available</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2 style="color: #4169E1">Required Information:</h2>
+                        <ul>
+                            <li>"manifest_version" - Version you're developing for</li>
+                            <li>"name" - Your extension's name</li>
+                            <li>"version" - The version of your extension</li>
+                        </ul>
+                        <p><small>(As of Chrome v18, manifest_version is set to 2, as v1 is deprecated)</small></p>
+                        <p><small>(At time of writing, Chrome's current stable version is v46)</small></p>
+                        <pre>
+                            <code data-trim contenteditable>
+{
+    "manifest_version": 2,
+    "name": "Tab Background Colour Changer",
+    "version": "1.0",
+}
+					        </code>
+                        </pre>
+                    </section>
+                    <section>
+                        <h2 style="color: #4169E1">Additional Information</h2>
+                        <pre>
+                            <code data-trim contenteditable>
+{
+    // Required
+    "manifest_version": 2,
+    "name": "My Extension",
+    "version": "versionString",
+    
+    // Recommended
+    "default_locale": "en",
+    "description": "A plain text description",
+    "icons": {...},
+    
+    // Pick one (or none)
+    "browser_action": {...},
+    "page_action": {...},
+}
+					        </code>
+                        </pre>
+                        <p>For a complete list, visit <a href="https://developer.chrome.com/extensions/manifest">Google's Manifest Documentation</a></p>
+                    </section>
+				</section>
+
+				<section data-background="#fff">
+                    <section id="contentscripts">
+                         <h2 style="color: #4169E1">Content Scripts</h2>
+                        <ul>
+                            <li>Has access to the DOM</li>
+                            <li>Operate in an "isolated world", do not have access to functions / variables</li>
+                            <li>This allows them to be useful, but not cause any issues, like conflicting variables, etc</li>
+                            <li>Needs permission for each site it works on</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2 style="color: #4169E1">Use Cases:</h2>
+                        <ul>
+                            <li class="fragment">Change the background colour of a webpage</li>
+                            <li class="fragment">Modify font-size on a webpage / all web pages</li>
+                            <li class="fragment">Replace all instances of certain words with anything you want</li>
+                            <li class="fragment">Example: Replace "cloud" with "floppy disk"</li>
+                            <li class="fragment">"Our floppy disk platform allows you to store all your information seamlessly!"</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2 style="color: #4169E1">Adding to the manifest</h2>
+                            <pre>
+                                <code data-trim contenteditable>
+{
+  "name": "My extension",
+  ...
+  "content_scripts": [
+    {
+      "matches": ["http://www.google.com/*"],
+      "css": ["mystyles.css"],
+      "js": ["jquery.js", "myscript.js"]
+    }
+  ],
+  ...
+}
+                                </code>
+                            </pre>
+                    </section>
+                </section>
+                <section data-background="#fff">
+                    <section id="bgpages">
+                         <h2 style="color: #4169E1">Background Pages:</h2>
+                        <ul>
+                            <li>Allows you to connect your extension's functionality to the DOM</li>
+                            <br>
+                            <li>This lets you make extensions that can take advantage of your webpages</li>
+                            <br>
+                            <li>Example: Pocket saves the current webpage to it's service when it's icon is clicked</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2 style="color: #4169E1">Adding to the manifest</h2>
+                        <pre>
+                            <code data-trim contenteditable>
+{
+  "name": "My extension",
+  ...
+  "background": {
+    "scripts": ["background.js"]
+  },
+  ...
+}
+                            </code>
+                        </pre>
+                    </section>
+            
+                </section>
+            
+                <section data-background="#fff">
+                    <section id="build">
+                        <h2 style="color: #4169E1">Building the Extension</h2>
+                        <p>We need to:</p>
+                        <ul>
+                            <li>Setup the manifest</li>
+                            <li>Setup our background page</li>
+                            <li>Setup options &amp; storage</li>
+                        </ul>
+                    </section>
+                </section>
+            
+                <section data-background="#fff">
+                    <section id="setupmanifest">
+                        <h2 style="color: #4169E1">Setting up your Manifest</h2>
+                        <pre>
+                            <code data-trim contenteditable>
+{
+    "manifest_version": 2,
+    "name": "Tab Background Colour Changer",
+    "version": "1.0",
+    "browser_action": { // Create the extension's button
+        "default_title": "Click to apply background-colour change"
+    },
+    "background": {
+        "scripts": ["background.js"]
+    },
+    "options_ui": { // Allows our extension to have an options menu
+        "page": "options.html",
+        "chrome_style": true
+    },
+    "permissions": [ // Declare the permissions we want from Chrome
+        "activeTab", // Access the current tab, more on it later
+        "storage"    // Lets us store our users' option preference
+    ]
+}
+                            </code>
+                        </pre>
+                    </section>
+                </section>
+            
+                <section data-background="#fff">
+                    <section id="activeTab">
+                        <h2 style="color: #4169E1">activeTab</h2>
+                        <blockquote cite="https://developer.chrome.com/extensions/activeTab">
+					   	   &ldquo;
+                           The activeTab permission gives an extension temporary access to the currently active tab when the user invokes the extension - for example by clicking its browser action. Access to the tab lasts until the tab is navigated or closed.
+                            &rdquo;
+					   </blockquote> 
+                    </section>
+                    <section>
+                        <h2 style="color: #4169E1">Why use activeTab?</h2>
+                        <ul>
+                            <li>activeTab allows us to only access the current page when the user requests it, in this case via the extension's "Browser Action" button.</li>
+                            
+                            <li>It also acts as a "for all URLs" content script, without giving access to all web pages opened without the user asking us to do something with them</li>
+                            <li><a href="https://developer.chrome.com/extensions/activeTab">Link to Developer Docs</a></li>
+                        
+                        </ul>
+                    </section>
+                </section>
+            
+                <section data-background="#fff">
+                    <section id="setupBG">
+                        <h2 style="color: #4169E1">Setting up Background Page</h2>
+                        <p>We want to:</p>
+                        <ul>
+                            <li>Detect when our extension's icon is clicked</li>
+                            <li>Change the background colour of the page</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2 style="color: #4169E1">Background.js Code</h2>
+                        <pre>
+                            <code data-trim contenteditable>
+{
+    // Detects clicks on the Extension Icon (Browser Action Button)
+    chrome.browserAction.onClicked.addListener(function (tab) {
+        // When clicked, the code here will run
+        
+        // Run a piece of JavaScript on the current page
+        chrome.tabs.executeScript({
+            // Set the backgroundColor property of the page to red
+            code: 'document.body.style.backgroundColor="red"'
+        });
+    }
+}
+                            </code>
+                        </pre>
+                    </section>
+                </section>
+            
+                <section data-background="#fff">
+                    <section id="options">
+                        <h2 style="color: #4169E1">Adding Options</h2>
+                        <ul>
+                            <li>Currently we can only change the background colour of a webpage to red, that's pretty boring.</li>
+                            <br>
+                            <li>By adding an options page we can let the user decide what colour to change the background to.</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2 style="color: #4169E1">Adding Options to Manifest</h2>
+                        <pre>
+                            <code data-trim contenteditable>
+{
+  "options_ui": {
+        // Name of file &amp; location relative to manifest
+        "page": "options.html",
+        // Options page will be styled to match Chrome's design
+        "chrome_style": true
+  },
+}
+                            </code>
+                        </pre>
+                    </section>
+                    <section>
+                        <h2 style="color: #4169E1">Options.html body</h2>
+                        <pre>
+                            <code data-trim contenteditable>
+
+    <h2 id="status">Background colour selected:</h2>
+    <!-- Dropdown for user's choice -->
+    <select id="colourSelected" onchange="saveOptions()">
+        <option value="blue">Blue</option>
+        <option value="red">Red</option>
+        <option value="yellow">Yellow</option>
+        <option value="black">Black</option>
+        <option value="white">White</option>
+        <option value="green">Green</option>
+        <option value="pink">Pink</option>
+        <option value="purple">Purple</option>
+    </select>
+    
+    <!-- Button to save the user's preference -->
+    <div>
+        <button id="save">Update Colour</button>
+    </div>
+        
+    <!-- Saving options / displaying current option -->
+    <script src="options.js"></script>
+                            </code>
+                        </pre>
+                    </section>
+                </section>
+
+                <section data-background="#fff">
+                    <section id="storage">
+                        <h2 style="color: #4169E1">Storing &amp; Retrieving Data</h2>
+                        <p>Two functions you'll use:</p>
+                        <ul>
+                            <li>chrome.storage.sync.set</li>
+                            <li>chrome.storage.sync.get</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2 style="color: #4169E1">Options.js - Saving</h2>
+                        <pre>
+                            <code data-trim contenteditable>
+function saveOptions(){
+    // Get the user's selected colour value
+    var colourSelected = document.getElementById("colourSelected").value;
+    
+    // By using .sync, it will save to their account and persist
+    chrome.storage.sync.set({      
+        bgColour: colourSelected
+        
+    }, function() {
+        // Update the header to let user know their setting was saved.
+        var status = document.getElementById('status');
+        status.textContent = 'Successfully updated background colour.';
+        
+        // After 1.75 seconds, revert the header to it's original text
+        setTimeout(function() {
+          status.textContent = 'Background colour selected:';
+        }, 1750);
+    });
+}
+                            </code>
+                        </pre>
+                    </section>
+                    <section>
+                        <h2 style="color: #4169E1">Options.js - Restoring</h2>
+                        <pre>
+                            <code data-trim contenteditable>
+function restoreOptions(){
+    // Loads the user's selected colour if present
+    // Otherwise, it gets the default colour
+    chrome.storage.sync.get({
+        bgColour: DEFAULT_BG_COLOUR
+        
+    }, function(details) {
+        // Jquery used to set the default dropdown value to
+        // the value to user had previously assigned
+        $("#colourSelected").val(details.bgColour);
+    });
+}
+                            </code>
+                        </pre>
+                    </section>
+                    <section>
+                        <h2 style="color: #4169E1">Options.js - Listners</h2>
+                        <pre>
+                            <code data-trim contenteditable>
+ DEFAULT_BG_COLOUR = "blue";                           
+                            
+// Wait for the page to be loaded, then update the dropdown menu
+document.addEventListener("DOMContentLoaded", restoreOptions);
+
+// Wait for the "Update Settings" button to be clicked, then update
+// the colour value saved to Chrome's storage
+document.getElementById("save").addEventListener("click", saveOptions);
+                            </code>
+                        </pre>
+                    </section>
+                </section>
+
+				<section data-background="#fff">
+					<section id="updateBG">
+                        <h2 style="color: #4169E1">Updating our Background.js</h2>
+                            <p>Since the user now can choose a colour, we should update our background.js to use that colour, instead of just using red.</p>
+                    </section>
+                    <section>
+                        <pre>
+                            <code data-trim contenteditable>
+chrome.browserAction.onClicked.addListener(function (tab) { 
+    // A default colour to be used if the user has not specified one
+    var DEFAULT_BG_COLOUR = "blue";
+    
+    // Call Chrome's storage to get the user's preference
+    // If they have not specified one, use the default
+    chrome.storage.sync.get({
+        bgColour: DEFAULT_BG_COLOUR
+    
+    }, function(details) {
+        // Assign our background colour to the one chrome has stored
+        backgroundColour = details.bgColour;
+
+        // Change the background of the current window to the
+        // background colour the user's / default value
+        chrome.tabs.executeScript({
+            code: 'document.body.style.backgroundColor="'
+            + backgroundColour + '"'
+        });
+    });
+});
+                            </code>
+                        </pre>
+                    </section>
+				</section>
+            
+                <section data-background="#fff" id="testing">
+					<h2 style="color: #4169E1">Testing your extension:</h2>
+                    <ol>
+                        <li>Go to "Settings"</li>
+                        <li>Select "Extensions"</li>
+                        <li>Select "Load unpacked extension"</li>
+                        <li>Select the folder containing your manifest</li>
+                        <li>The icon should now be added to your UI</li>
+                    </ol>
+				</section>
+            
+                <section data-background="#fff" id="resources">
+					<h2 style="color: #4169E1">Resources:</h2>
+                    <p>
+                        - <a href="https://developer.chrome.com/extensions" target="_blank">Google's Chrome Docs</a>
+                        <br>
+                        - <a href="https://www.youtube.com/user/ChromeDevelopers" target="_blank">Chrome Developers YouTube Channel</a>
+                        <br>
+                        <a href="https://developer.chrome.com/extensions/getstarted" target="_blank">Getting Started</a>
+                    </p>
+				</section>
+            
+				<section data-background="#fff" id="source">
+					<h2 style="color: #4169E1">Source Code</h2>
+					<p>
+				        - <a href="https://github.com/PatrickOBoyle/Background-Colour-Changer" target="_blank">Source code</a>
+					</p>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
