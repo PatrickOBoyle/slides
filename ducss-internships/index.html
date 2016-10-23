@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>DUCSS Internships</title>
+
+		<meta name="author" content="Patrick O'Boyle">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/white.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+		<div class="reveal">
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section data-background="#ff9636" style="color: #fff">
+					<h1 style="color: #fff">DUCSS Internships</h1>
+          <h4 style="color: #fff">19 October, 2016</h4>
+          <h4 style="color: #fff">Trinity College<br><a href="http://ducss.ie" style="color: white;">DUCSS</a></h4>
+					<p class="findme">
+						<small>
+            	<a href="http://patrickoboyle.com" target="_blank">Patrick O'Boyle</a> / <a href="https://twitter.com/Patrick_OBoyle" target="_blank">@Patrick_OBoyle</a>
+            </small>
+					</p>
+				</section>
+
+        <!-- site -->
+				<section data-background="#fff">
+					<h3 style="color: #ff9636">DUCSS Internships</h3>
+					<a href="http://ducss.ie/internships" target="_blank"><img src="images/ducss.png" style="background: none; box-shadow: none; border: none;"/></a>
+				</section>
+
+        <!-- how -->
+				<section data-background="#fff" style="color: #000">
+					<h2 style="color:#ff9636">How It's Made</h2>
+					<ul>
+						<li class="fragment">Website is built on Ruby on Rails</li>
+						<li class="fragment">Debated on what to include (Description or no description?)</li>
+						<li class="fragment">Went minimal - leave desc. to companies</li>
+						<li class="fragment">Pagination</li>
+						<li class="fragment"></li>
+					</ul>
+				</section>
+
+				<!-- improvements -->
+				<section data-background="#fff" style="color: #000">
+					<h2 style="color:#ff9636">Improvements ⚒</h2>
+					<ul>
+						<li class="fragment">More items on pagination</li>
+						<li class="fragment">Make "Internships" appear centred</li>
+						<li class="fragment">Maybe a two column display of items for larger screen widths?</li>
+						<li class="fragment">Make them self-expire and close</li>
+					</ul>
+				</section>
+
+				<!-- future -->
+				<section data-background="#fff" style="color: #000">
+					<h2 style="color:#ff9636">Future 💡</h2>
+					<ul>
+						<li class="fragment">Internships -> Careers!</li>
+						<li class="fragment">Tips, tricks, recommendations</li>
+						<li class="fragment">Maybe graduate jobs for 4th years?</li>
+						<li class="fragment">Tips welcome!</li>
+					</ul>
+				</section>
+
+				<!-- source -->
+				<section data-background="#fff" style="color: #000">
+					<h2 style="color:#ff9636">Source 💾</h2>
+					<ul>
+						<li class="fragment"><a href="https://github.com/DUCSS/ducss-site">DUCSS Site on GitHub</a></li>
+						<li class="fragment"><a href="https://github.com/DUCSS">DUCSS on GitHub</a></li>
+					</ul>
+				</section>
+			</div>
+		</div>
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
