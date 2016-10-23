@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Emojicode</title>
+
+		<meta name="description" content="Emojicode Introduction">
+		<meta name="author" content="Patrick O'Boyle">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/white.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+		<div class="reveal">
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section data-background="#312d67">
+					<h1>Emojicode</h1>
+          <h4>16 March, 2016</h4>
+          <img width="30%" src="https://ducss.ie/assets/nav-logo-d57e6cf6d50ca466b8f75efb664839e234ef24657e5c3b67f7fe54066769aec9.png" alt="DUCSS Logo"/>
+					<p class="findme">
+						<small>Created by <a class="home-link" href="http://patrickoboyle.com" target="_blank" style="color: aliceblue; a.home-link:hover; color: #000;">Patrick O'Boyle</a> / <a  class="home-link" href="https://twitter.com/Patrick_OBoyle" target="_blank" style="color: aliceblue; a.home-link:hover; color: #000;">@Patrick_OBoyle</a></small>
+					</p>
+				</section>
+
+				<!-- What Is This -->
+				<section data-background="#fff">
+            <section id="Emojicode">
+                <h2 style="color: #312d67">Emojicode</h2>
+                <ul>
+                  <li class="fragment">Static, strongly typed language</li>
+				        	<li class="fragment">Compiled language</li>
+                  <li class="fragment">It's coded in emoji! </li>
+                </ul>
+            </section>
+
+            <section>
+              <h2 style="color: #312d67">Example of code:</h2>
+							<img src="./images/screenshot.png" alt="Screenshot">
+						</section>
+				</section>
+
+				<section data-background="#fff" id="api">
+					<section>
+						<h2 style="color: #312d67">Primitive Types</h2>
+						<ul>
+							<li class="fragment">🚂 - Integer [-2^63+1, 2^63-1]</li>
+							<li class="fragment">👌 - Boolean</li>
+							<li class="fragment">🚀 - Real Numbers</li>
+						</ul>
+					</section>
+					<section>
+						<h3 style="color: #312d67">Honourable mention: s class</h3>
+						<ul>
+							<li class="fragment">S Class is the String class</li>
+							<li class="fragment">🔡 - String literals</li>
+							<li class="fragment">🔡Apples are great🔡 is a string</li>
+						</ul>
+					</section>
+				</section>
+
+				<section data-background="#fff">
+					<h2 style="color: #312d67">Emoji Meanings</h2>
+					<ul>
+						<li class="fragment">🍇 - Opening Bracket 🍉 - Closing bracket</li>
+						<li class="fragment">🍮 var_name_here - Declare a variable</li>
+						<li class="fragment">👴 - Commment this line of code</li>
+						<li class="fragment">🍊 - If</li>
+						<li class="fragment">🍋 - Else if</li>
+						<li class="fragment">🍓 - Else</li>
+						<li class="fragment">😀 🔤Hello there🔤 - Print line</li>
+						<li class="fragment">🍫 counter_variable - Increment variable</li>
+						<li class="fragment">🍳 counter_variable - Decrement variable</li>
+						<li class="fragment">🍎 return_variable - Return</li>
+					</ul>
+				</section>
+
+				<section data-background="#fff">
+					<h2 style="color: #312d67">Classes</h2>
+					<ul>
+						<li class="fragment">🐇 class - Define a new class, where class must be an emoji</li>
+						<li class="fragment">🍰 variable_name type - Declare a class-wide variable. Example: 🍰 counter 🚂</li>
+						<li class="fragment">🐈 - Initalise a class Example: 🐈 💳 @flashOn 👌 @megapixels 🚂</li>
+						<li class="fragment">🔷 className initializerName [arguments ...] - Instatiate a class Example: 🔷🔡🚂 i 10</li>
+						<li class="fragment">🐕 - This, referring to the current object</li>
+						<li class="fragment">🏁 - The main function, where the program begins</li>
+					</ul>
+				</section>
+
+				<section data-background="#fff" >
+					<h2 style="color: #312d67">Hello World Program</h2>
+					<img src="./images/hello_world.png"/>
+	      </section>
+
+				<section data-background="#fff" >
+					<h2 style="color: #312d67">FizzBuzz Program</h2>
+					<img src="./images/screenshot.png" style="height: 80%;"/>
+	      </section>
+
+				<section data-background="#fff" >
+					<h2 style="color: #312d67">Installing Emojicode</h2>
+					<p><a href="http://www.emojicode.org/docs/guides">Link: Install Guide &amp; Download</a></p>
+					<ul>
+						<li class="fragment">Linux/Windows: Requires installing emoji-font, built into OS X</li>
+						<li class="fragment">Windows: May be difficult to setup, compiler is similar to C</li>
+						<li class="fragment">OS X: Install using the install.sh and you're good to go.</li>
+					</ul>
+	      </section>
+
+				<section data-background="#fff" >
+					<h2 style="color: #312d67">Compiling Emojicode</h2>
+					<p><a href="http://www.emojicode.org/docs/guides/compile-and-run.html">Link: Compiling &amp; Running Guide</a></p>
+					<ul>
+						<li class="fragment">In terminal, "emojicodec file_name.emojic" will give you file_name.emojib binary</li>
+						<li class="fragment">To run the binary - "emojicode file_name.emojib"</li>
+					</ul>
+	      </section>
+
+				<section data-background="#fff" >
+					<section>
+						<h2 style="color: #312d67">Coding in Emoji</h2>
+						<ul>
+							<li class="fragment">Recommended IDE/Editor: <a href="https://atom.io">ATOM</a> </li>
+							<li class="fragment">Atom displays Emoji in the editor, making it easy to work with</li>
+							<li class="fragment">OS X Tip: ctrl + cmd + spacebar = popup emoji selector</li>
+						</ul>
+					</section>
+					<section>
+						<h2 style="color: #312d67">Emoji Selector OS X</h2>
+						<img src="./images/emoji.png"/>
+					</section>
+	      </section>
+
+        <section data-background="#fff" id="resources">
+					<h2 style="color: #312d67">Resources:</h2>
+          <p>
+            - <a href="http://www.emojicode.org" target="_blank">Language Homepage</a>
+            <br>
+            - <a href="http://www.emojicode.org/docs/" target="_blank">Documentation</a>
+						<br>
+						- <a href="http://www.emojicode.org/docs/reference/" target="_blank">Language Guide</a>
+          </p>
+				</section>
+
+				<section data-background="#312d67" id="source">
+					<h2 style="color: #fff">Source Code:</h2>
+					<p>
+				      <a href="https://github.com/PatrickOBoyle/emojicode-experiments" target="_blank" style="color: #fff">Source Code</a>
+					</p>
+				</section>
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
