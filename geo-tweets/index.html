@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Geo Tweets</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/white.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+		<div class="reveal">
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section data-background="rgb(85, 172, 238)">
+					<h1>Geo Tweets</h1>
+                    <h4>23 February, 2016</h4>
+                    <img width="30%" src="https://ducss.ie/assets/nav-logo-d57e6cf6d50ca466b8f75efb664839e234ef24657e5c3b67f7fe54066769aec9.png" alt="DUCSS Logo"/>
+					<p class="findme">
+						<small>
+                            Created by <a class="home-link" href="http://patrickoboyle.com" target="_blank" style="color: aliceblue; a.home-link:hover; color: #000;">Patrick O'Boyle</a> / <a  class="home-link" href="https://twitter.com/Patrick_OBoyle" target="_blank" style="color: aliceblue; a.home-link:hover; color: #000;">@Patrick_OBoyle</a>
+                        </small>
+					</p>
+				</section>
+
+				<!-- What Is This -->
+				<section data-background="#fff">
+                    <section id="Geo Tweets">
+                        <h2 style="color: rgb(85, 172, 238)">Geo Tweets</h2>
+
+                        <ul>
+                            <li class="fragment">Takes a latitude, longitude, and radius</li>
+                            <li class="fragment">Finds recent tweets from the area</li>
+                            <li class="fragment">Displays 10 most favourited tweets, ordered</li>
+                        </ul>  
+                    </section>
+                    
+                    <section>
+                        <h2 style="color: rgb(85, 172, 238)">Screenshot</h2>
+						<img src="./images/screenshot.png" alt="Screenshot">
+					</section>
+				</section>
+                
+                <!-- Twitter API -->
+				<section data-background="#fff" id="api">
+					<h2 style="color: rgb(85, 172, 238)">Twitter API</h2>
+                    <p><a href="https://dev.twitter.com/rest/public">REST API</a></p>
+					<ul>
+                        <li class="fragment">Search API is very powerful &amp; easy to use</li>
+                        <li class="fragment">Maximum tweets returned: 100 (defaults to 15)</li>
+                        <li class="fragment">Lots of parameters, location, language, time period, contains certain words</li>
+                    </ul>
+                    
+				</section>
+
+                
+				<section data-background="#fff" >
+                    <section id="structure">
+                        <h2 style="color: rgb(85, 172, 238)">API Libraries</h2>
+                        <a href="https://dev.twitter.com/overview/api/twitter-libraries">Twitter Endorsed Libs</a>
+                        <p></p>
+                        <ul>
+                            <li class="fragment">I used <a href="https://github.com/J7mbo/twitter-api-php'">TwitterAPIExchange</a>, a PHP library</li>
+                            <li class="fragment">Allows you to authenicate and make requests very simply, letting you focus on what you're doing</li>
+                            <li class="fragment">Tradeoff: If the API updates, libs need changes to support new features / changed features</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2 style="color: rgb(85, 172, 238)">Example setup:</h2>
+                        <img src="./images/example_php.png" alt="PHP Screenshot"/>
+                    </section>
+				</section>
+                
+                <section data-background="#fff">
+                    <section>
+                        <h2 style="color: rgb(85, 172, 238)">Searching, Sorting &amp; Displaying Tweets</h2>
+                        <ul>
+                            <li class="fragment">PHP data passed to JavaScript for processing</li>
+                            <li class="fragment">All tweets are sorted by favourite count, and the top 10 are kept</li>
+                            <li class="fragment">Room for improvement: Stop sorting once 10 top are formed</li>
+                            
+                            <li class="fragment">The top 10 tweets are then iterated over, converted to DOM elements, and added to the page</li>
+                            <li class="fragment">Twitter supply a useful script (widget.js) to style tweets you're displaying</li>
+                        </ul>
+                    </section>
+                </section>
+
+				<section data-background="rgb(85, 172, 238)">
+                    <section id="manifest">
+                        <h2 style="color: #fff">DEMO</h2>
+                    </section>
+				</section>
+
+                <section data-background="#fff" id="resources">
+					<h2 style="color: rgb(85, 172, 238)">Resources:</h2>
+                    <p>
+                        - <a href="https://dev.twitter.com/rest/public" target="_blank">Twitter API Page</a>
+                        <br>
+                        - <a href="https://dev.twitter.com/rest/public" target="_blank">Twitter Approved Libraries</a>
+                    </p>
+				</section>
+            
+				<section data-background="rgb(85, 172, 238)" id="source">
+					<h2 style="color: #fff">Link &amp; Source:</h2>
+					<p>
+				        <a href="https://github.com/PatrickOBoyle/geo-tweets" target="_blank" style="color: #fff">Source code</a>
+                        <br>
+                        <a href="http://patrickoboyle.com/geo-tweets/" target="_blank" style="color: #fff">Live app</a>
+					</p>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
